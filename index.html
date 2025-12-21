@@ -7,149 +7,32 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #0f1216;
-            --accent-blue: #60a5fa;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: #e2e8f0;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* 冰雪工業風背景 */
-        .arctic-surface {
-            background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0f1216 100%);
-        }
-
-        /* 輪播容器 - 使用 dvh 解決手機瀏覽器高度問題 */
-        .hero-section {
-            height: 90vh; /* 備用高度 */
-            height: 90dvh; 
-        }
-
-        .carousel-slide {
-            display: none;
-            height: 100%;
-            width: 100%;
-            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden;
-        }
-
-        .carousel-slide.active {
-            display: block;
-            animation: kenBurns 20s infinite alternate;
-            will-change: transform;
-            transform: translateZ(0);
-        }
-
-        @keyframes kenBurns {
-            from { transform: scale(1); }
-            to { transform: scale(1.12); }
-        }
-
-        /* 4K 高清渲染優化 */
-        .hi-res-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: contrast(1.05) brightness(1.05);
-            image-rendering: -webkit-optimize-contrast;
-        }
-
-        /* --- 核心：iPhone 物理磨砂玻璃文字 (KUO AI) --- */
-        .glass-text-pure {
-            color: rgba(255, 255, 255, 0.45);
-            -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.5);
-            mix-blend-mode: plus-lighter;
-            text-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            letter-spacing: -0.05em;
-        }
-
-        /* --- 核心：iPhone 玻璃輪廓文字 (STUDIO) --- */
-        .glass-text-outline-pure {
-            color: transparent;
-            -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.6);
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.25));
-            mix-blend-mode: screen;
-            letter-spacing: 0.05em;
-        }
-
-        /* 響應式標題大小優化 */
-        .hero-title {
-            font-size: clamp(3rem, 15vw, 11.5rem);
-            line-height: 0.82;
-        }
-
-        /* 工業標籤 */
-        .meta-label {
-            font-size: 9px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 4px 12px;
-            border: 1px solid rgba(255,255,255,0.15);
-            background: rgba(0,0,0,0.3);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 30;
-        }
-
-        .ig-card {
-            transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-            border: 1px solid rgba(255,255,255,0.05);
-            background: #161b22;
-            position: relative;
-            overflow: hidden;
-        }
-
-        @media (hover: hover) {
-            .ig-card:hover {
-                border-color: rgba(255,255,255,0.4);
-                transform: translateY(-10px);
-                z-index: 10;
-            }
-        }
-
-        /* 捲軸美化 */
+        :root { --bg-color: #0f1216; --accent-blue: #60a5fa; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: #e2e8f0; -webkit-font-smoothing: antialiased; }
+        .arctic-surface { background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0f1216 100%); }
+        .hero-section { height: 90vh; height: 90dvh; }
+        .carousel-slide { display: none; height: 100%; width: 100%; transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1); overflow: hidden; }
+        .carousel-slide.active { display: block; animation: kenBurns 20s infinite alternate; will-change: transform; transform: translateZ(0); }
+        @keyframes kenBurns { from { transform: scale(1); } to { transform: scale(1.12); } }
+        .hi-res-img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.05) brightness(1.05); image-rendering: -webkit-optimize-contrast; }
+        .glass-text-pure { color: rgba(255, 255, 255, 0.45); -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.5); mix-blend-mode: plus-lighter; text-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); letter-spacing: -0.05em; }
+        .glass-text-outline-pure { color: transparent; -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.6); filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.25)); mix-blend-mode: screen; letter-spacing: 0.05em; }
+        .hero-title { font-size: clamp(3rem, 15vw, 11.5rem); line-height: 0.82; }
+        .meta-label { font-size: 9px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px; border: 1px solid rgba(255,255,255,0.15); background: rgba(0,0,0,0.3); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 30; }
+        .ig-card { transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1); border: 1px solid rgba(255,255,255,0.05); background: #161b22; position: relative; overflow: hidden; }
+        @media (hover: hover) { .ig-card:hover { border-color: rgba(255,255,255,0.4); transform: translateY(-10px); z-index: 10; } }
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: var(--bg-color); }
         ::-webkit-scrollbar-thumb { background: #334155; }
-
-        .fade-in {
-            animation: fadeIn 1s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .media-container {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        video {
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-            background: #000;
-        }
-
-        /* 手機端按鈕加大觸控範圍 */
-        .touch-target {
-            min-height: 44px;
-            min-width: 44px;
-        }
+        .fade-in { animation: fadeIn 1s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .media-container { width: 100%; height: 100%; overflow: hidden; }
+        video { object-fit: cover; width: 100%; height: 100%; background: #000; }
+        .touch-target { min-height: 44px; min-width: 44px; }
     </style>
 </head>
 <body class="overflow-x-hidden arctic-surface">
 
-    <!-- 導航 (已移除 Console 按鈕) -->
     <nav class="fixed top-0 w-full z-[100] px-6 md:px-10 py-6 md:py-8 flex justify-between items-center mix-blend-difference">
         <div class="text-xl md:text-2xl font-black tracking-tighter italic text-white uppercase">Kuo Ai.</div>
         <div class="hidden md:flex gap-10 text-[10px] font-bold tracking-[0.3em] uppercase text-white">
@@ -158,36 +41,28 @@
         </div>
     </nav>
 
-    <!-- 頂部自動輪播區塊 (Carousel) -->
     <header class="relative w-full hero-section bg-black overflow-hidden border-b border-white/10">
         <div id="carousel-wrapper" class="w-full h-full">
             <div class="carousel-slide active bg-slate-900 flex items-center justify-center italic text-slate-700">
                 <p class="tracking-[1em] uppercase text-[10px] md:text-xs text-center px-6">KUO AI STUDIO<br>Establishing 4K Node...</p>
             </div>
         </div>
-
-        <!-- 輪播文字覆蓋層 - iPhone 物理玻璃質感 -->
         <div class="absolute inset-0 z-20 pointer-events-none flex flex-col justify-center px-6 md:px-10">
             <div class="max-w-[1400px] mx-auto w-full relative">
                 <h2 class="text-blue-400 text-[10px] font-black tracking-[0.6em] md:tracking-[0.8em] uppercase mb-6 md:mb-10 opacity-80">/ Future Concept / 2025</h2>
-                
                 <h1 class="hero-title font-black tracking-tighter uppercase">
                     <span class="glass-text-pure block">KUO AI</span>
                     <span class="glass-text-outline-pure block">STUDIO</span>
                 </h1>
-                
                 <div class="mt-12 md:mt-20 flex flex-wrap gap-4">
                     <div class="meta-label bg-white/10 text-white border-white/20">4K Creative Node</div>
                     <div class="meta-label border-white/10 text-white/40 italic hidden sm:block">Visionary Intelligence</div>
                 </div>
             </div>
         </div>
-
-        <!-- 漸變遮罩 -->
         <div class="absolute bottom-0 w-full h-64 bg-gradient-to-t from-[#0f1216] via-[#0f1216]/60 to-transparent z-10"></div>
     </header>
 
-    <!-- 專案細節展示區 -->
     <section id="about" class="max-w-[1400px] mx-auto px-6 md:px-10 py-16 md:py-24 grid grid-cols-1 md:grid-cols-3 gap-10 border-b border-white/5">
         <div class="border-l border-white/20 pl-6">
             <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest">Creative Focus</span>
@@ -205,11 +80,10 @@
             </div>
         </div>
         <div class="flex items-center md:justify-end">
-            <div id="api-status" class="text-[9px] font-mono text-slate-500 border border-white/10 px-3 py-1 bg-white/5">ARCHIVE LOADED</div>
+            <div id="api-status" class="text-[9px] font-mono text-slate-500 border border-white/10 px-3 py-1 bg-white/5">CONNECTING...</div>
         </div>
     </section>
 
-    <!-- 作品網格區塊 -->
     <main id="collection" class="max-w-[1400px] mx-auto px-6 md:px-10 py-20 md:py-32">
         <div class="flex flex-col md:flex-row justify-between items-baseline md:items-end mb-12 md:mb-16 gap-4">
             <div>
@@ -218,15 +92,9 @@
             </div>
             <p class="text-xs text-slate-500 tracking-[0.2em] uppercase italic">Experience the Motion.</p>
         </div>
-
         <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            <!-- 骨架屏 -->
             <div class="lg:col-span-2 lg:row-span-2 bg-slate-800/10 aspect-square animate-pulse flex items-center justify-center text-[10px] font-bold text-slate-800 tracking-[1em]">LOADING</div>
-            <div class="bg-slate-800/10 aspect-[3/4] animate-pulse"></div>
-            <div class="bg-slate-800/10 aspect-[3/4] animate-pulse"></div>
-            <div class="bg-slate-800/10 aspect-[3/4] animate-pulse"></div>
         </div>
-
         <div class="mt-24 md:mt-32 text-center">
             <button id="load-more-btn" class="hidden text-[10px] font-black tracking-[0.5em] uppercase border border-white/20 px-12 py-5 hover:bg-white hover:text-black transition-all touch-target">
                 Access More Data
@@ -234,7 +102,6 @@
         </div>
     </main>
 
-    <!-- 頁尾 -->
     <footer class="py-20 md:py-32 px-6 md:px-10 text-center border-t border-white/5">
         <h2 class="text-[15vw] md:text-[12vw] font-black text-white/5 leading-none select-none mb-10 italic uppercase">Kuo Ai.</h2>
         <div class="flex justify-center gap-8 md:gap-10 text-[10px] font-bold text-slate-700 uppercase tracking-[0.5em] mb-10">
@@ -252,23 +119,18 @@
         let carouselTimer = null;
         let nextPageUrl = null;
 
-        // --- 核心：從後台讀取金鑰或直接硬編碼 ---
-        const getIGToken = () => {
-            // 你可以直接在這裡填入你的 Token 作為預設值
-            // return "YOUR_PERMANENT_TOKEN_HERE";
-            return localStorage.getItem('ig_access_token');
-        };
-
-        async function fetchIGPosts(token, url = null) {
+        async function fetchIGPosts(url = null) {
             const status = document.getElementById('api-status');
             const loadMoreBtn = document.getElementById('load-more-btn');
             
-            const apiUrl = url || `https://graph.instagram.com/me/media?fields=id,media_type,media_url,permalink,thumbnail_url,caption&limit=50&access_token=${token}`;
+            // 指向 Vercel 後端 API，不再傳入 token
+            const localApiUrl = url ? `/api/ig?url=${encodeURIComponent(url)}` : `/api/ig`;
 
             try {
-                const res = await fetch(apiUrl);
+                const res = await fetch(localApiUrl);
                 const data = await res.json();
-                if (data.error) throw new Error(data.error.message);
+                
+                if (!data.data) throw new Error("No data received");
 
                 if (!url) renderCarousel(data.data.slice(0, 5));
                 renderGrid(data.data, !!url);
@@ -276,26 +138,26 @@
                 nextPageUrl = data.paging?.next || null;
                 if (nextPageUrl) {
                     loadMoreBtn.classList.remove('hidden');
-                    loadMoreBtn.onclick = () => fetchIGPosts(token, nextPageUrl);
+                    loadMoreBtn.onclick = () => fetchIGPosts(nextPageUrl);
                 } else {
                     loadMoreBtn.classList.add('hidden');
                 }
 
                 status.innerText = "ACTIVE";
-                
+                status.className = "text-[9px] font-mono text-green-500 border border-green-500/30 px-3 py-1 bg-green-500/5";
                 const totalItems = document.querySelectorAll('.ig-card').length;
                 document.getElementById('item-count').innerText = `${totalItems} Node(s) Discovered`;
 
             } catch (e) {
-                status.innerText = "AUTH_FAIL";
+                status.innerText = "OFFLINE";
                 status.className = "text-[9px] font-mono text-red-500 border border-red-500/30 px-3 py-1 bg-red-500/5";
+                console.error(e);
             }
         }
 
         function renderCarousel(posts) {
             const wrapper = document.getElementById('carousel-wrapper');
             wrapper.innerHTML = '';
-            
             posts.forEach((post, i) => {
                 const url = post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url;
                 const slide = document.createElement('div');
@@ -303,7 +165,6 @@
                 slide.innerHTML = `<img src="${url}" class="hi-res-img" fetchpriority="high" loading="eager">`;
                 wrapper.appendChild(slide);
             });
-
             startCarousel();
         }
 
@@ -321,86 +182,36 @@
         function renderGrid(posts, append = false) {
             const grid = document.getElementById('gallery-grid');
             if (!append) grid.innerHTML = '';
-            
             posts.forEach((post, i) => {
                 const isVideo = post.media_type === 'VIDEO';
                 const thumb = isVideo ? post.thumbnail_url : post.media_url;
                 const isBig = !append && i === 1;
-                
                 const card = document.createElement('div');
                 card.className = `ig-card group fade-in ${isBig ? 'lg:col-span-2 lg:row-span-2' : ''}`;
                 
-                let mediaHtml = '';
-                if (isVideo) {
-                    mediaHtml = `
-                        <video 
-                            src="${post.media_url}" 
-                            poster="${thumb}" 
-                            muted 
-                            loop 
-                            playsinline 
-                            preload="metadata"
-                            class="w-full h-full object-cover filter brightness-50 group-hover:brightness-100 transition-all duration-1000"
-                        ></video>
-                    `;
-                    
-                    let tapped = false;
-                    card.onclick = (e) => {
-                        const v = card.querySelector('video');
-                        if (isVideo && !tapped && window.innerWidth < 1024) {
-                            e.preventDefault();
-                            document.querySelectorAll('video').forEach(vid => vid.pause());
-                            v.play().catch(() => {});
-                            tapped = true;
-                            setTimeout(() => { tapped = false; }, 3000);
-                        }
-                    };
+                let mediaHtml = isVideo ? 
+                    `<video src="${post.media_url}" poster="${thumb}" muted loop playsinline preload="metadata" class="w-full h-full object-cover filter brightness-50 group-hover:brightness-100 transition-all duration-1000"></video>` :
+                    `<img src="${thumb}" class="w-full h-full object-cover filter brightness-50 group-hover:brightness-100 transition-all duration-1000" loading="lazy">`;
 
-                    card.onmouseenter = () => {
-                        if (window.innerWidth >= 1024) {
-                            const v = card.querySelector('video');
-                            if (v) v.play().catch(() => {});
-                        }
-                    };
-                    card.onmouseleave = () => {
-                        if (window.innerWidth >= 1024) {
-                            const v = card.querySelector('video');
-                            if (v) {
-                                v.pause();
-                                v.currentTime = 0;
-                            }
-                        }
-                    };
-                } else {
-                    mediaHtml = `
-                        <img src="${thumb}" class="w-full h-full object-cover filter brightness-50 group-hover:brightness-100 transition-all duration-1000" loading="lazy">
-                    `;
-                }
-
-                card.innerHTML += `
+                card.innerHTML = `
                     <a href="${post.permalink}" target="_blank" class="block w-full h-full relative overflow-hidden">
-                        <div class="media-container w-full h-full">
-                            ${mediaHtml}
-                        </div>
-                        <div class="absolute top-4 left-4 meta-label">
-                            ${isVideo ? 'MOTION' : 'STATIC'}
-                        </div>
+                        <div class="media-container w-full h-full">${mediaHtml}</div>
+                        <div class="absolute top-4 left-4 meta-label">${isVideo ? 'MOTION' : 'STATIC'}</div>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex flex-col justify-end p-6 md:p-8 pointer-events-none">
                             <span class="text-[8px] font-black text-blue-500 tracking-[0.5em] uppercase mb-2">Technical Insight</span>
                             <p class="text-white text-[11px] italic line-clamp-2 leading-relaxed font-light tracking-wide">${post.caption || 'Archived Visual'}</p>
                         </div>
-                    </a>
-                `;
+                    </a>`;
+                
+                if(isVideo) {
+                    card.onmouseenter = () => { if(window.innerWidth >= 1024) card.querySelector('video').play(); };
+                    card.onmouseleave = () => { if(window.innerWidth >= 1024) { const v = card.querySelector('video'); v.pause(); v.currentTime = 0; } };
+                }
                 grid.appendChild(card);
             });
         }
 
-        window.onload = () => {
-            const token = getIGToken();
-            if (token) {
-                fetchIGPosts(token);
-            }
-        };
+        window.onload = () => { fetchIGPosts(); };
     </script>
 </body>
 </html>
