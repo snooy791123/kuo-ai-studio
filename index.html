@@ -118,14 +118,6 @@
         ::-webkit-scrollbar-track { background: var(--bg-color); }
         ::-webkit-scrollbar-thumb { background: #334155; }
 
-        /* 移除已移除功能的 CSS */
-        /* #settings-panel, #confirm-modal {
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            background: rgba(10, 15, 20, 0.95);
-            display: none;
-        } */
-
         .fade-in {
             animation: fadeIn 1s ease-out forwards;
         }
@@ -157,12 +149,12 @@
 </head>
 <body class="overflow-x-hidden arctic-surface">
 
-    <!-- 導航 -->
-    <nav class="fixed top-0 w-full z-[100] px-6 md:px-10 py-6 md:py-8 flex justify-between items-center">
+    <!-- 導航 (已移除 Console 按鈕) -->
+    <nav class="fixed top-0 w-full z-[100] px-6 md:px-10 py-6 md:py-8 flex justify-between items-center mix-blend-difference">
         <div class="text-xl md:text-2xl font-black tracking-tighter italic text-white uppercase">Kuo Ai.</div>
-        <!-- 移除 Console 按鈕 -->
-        <div class="flex gap-6 md:gap-10 text-[10px] font-bold tracking-[0.3em] uppercase text-white">
-            <span class="opacity-50">VERCEL API LINK</span>
+        <div class="hidden md:flex gap-10 text-[10px] font-bold tracking-[0.3em] uppercase text-white">
+            <a href="#collection" class="hover:opacity-50 transition-opacity">Archive</a>
+            <a href="#about" class="hover:opacity-50 transition-opacity">Information</a>
         </div>
     </nav>
 
@@ -196,7 +188,7 @@
     </header>
 
     <!-- 專案細節展示區 -->
-    <section class="max-w-[1400px] mx-auto px-6 md:px-10 py-16 md:py-24 grid grid-cols-1 md:grid-cols-3 gap-10 border-b border-white/5">
+    <section id="about" class="max-w-[1400px] mx-auto px-6 md:px-10 py-16 md:py-24 grid grid-cols-1 md:grid-cols-3 gap-10 border-b border-white/5">
         <div class="border-l border-white/20 pl-6">
             <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest">Creative Focus</span>
             <p class="text-lg font-bold mt-2 uppercase tracking-tighter italic">Visual Intelligence</p>
@@ -213,12 +205,12 @@
             </div>
         </div>
         <div class="flex items-center md:justify-end">
-            <div id="api-status" class="text-[9px] font-mono text-red-500 border border-red-500/30 px-3 py-1 bg-red-500/5">OFFLINE</div>
+            <div id="api-status" class="text-[9px] font-mono text-slate-500 border border-white/10 px-3 py-1 bg-white/5">ARCHIVE LOADED</div>
         </div>
     </section>
 
     <!-- 作品網格區塊 -->
-    <main class="max-w-[1400px] mx-auto px-6 md:px-10 py-20 md:py-32">
+    <main id="collection" class="max-w-[1400px] mx-auto px-6 md:px-10 py-20 md:py-32">
         <div class="flex flex-col md:flex-row justify-between items-baseline md:items-end mb-12 md:mb-16 gap-4">
             <div>
                 <h3 class="text-4xl md:text-5xl font-black tracking-tighter italic uppercase">Master Catalog</h3>
@@ -255,31 +247,27 @@
         </p>
     </footer>
 
-    <!-- 移除 Console / API 設定面板 -->
-    <!-- 移除 確認視窗 -->
-    
     <script>
         let carouselIndex = 0;
         let carouselTimer = null;
         let nextPageUrl = null;
 
-        // 移除 toggleSettings, showClearConfirm, hideClearConfirm, clearAllData, saveAndFetch
+        // --- 核心：從後台讀取金鑰或直接硬編碼 ---
+        const getIGToken = () => {
+            // 你可以直接在這裡填入你的 Token 作為預設值
+            // return "YOUR_PERMANENT_TOKEN_HERE";
+            return localStorage.getItem('ig_access_token');
+        };
 
-        // --- 核心修改：從後端 API 獲取數據 ---
         async function fetchIGPosts(token, url = null) {
             const status = document.getElementById('api-status');
             const loadMoreBtn = document.getElementById('load-more-btn');
             
-            status.innerText = "STREAMING...";
-            status.className = "text-[9px] font-mono text-yellow-500 border border-yellow-500/30 px-3 py-1 bg-yellow-500/5";
-
-            // 構建指向 Vercel 後端 API 的路徑
-            const localApiUrl = url ? `/api/ig?url=${encodeURIComponent(url)}` : `/api/ig`;
+            const apiUrl = url || `https://graph.instagram.com/me/media?fields=id,media_type,media_url,permalink,thumbnail_url,caption&limit=50&access_token=${token}`;
 
             try {
-                const res = await fetch(localApiUrl);
+                const res = await fetch(apiUrl);
                 const data = await res.json();
-                
                 if (data.error) throw new Error(data.error.message);
 
                 if (!url) renderCarousel(data.data.slice(0, 5));
@@ -288,21 +276,18 @@
                 nextPageUrl = data.paging?.next || null;
                 if (nextPageUrl) {
                     loadMoreBtn.classList.remove('hidden');
-                    // 分頁呼叫：傳遞 null 作為 token，並將下一頁的 URL 傳給後端
-                    loadMoreBtn.onclick = () => fetchIGPosts(null, nextPageUrl); 
+                    loadMoreBtn.onclick = () => fetchIGPosts(token, nextPageUrl);
                 } else {
                     loadMoreBtn.classList.add('hidden');
                 }
 
                 status.innerText = "ACTIVE";
-                status.className = "text-[9px] font-mono text-green-500 border border-green-500/30 px-3 py-1 bg-green-500/5";
                 
                 const totalItems = document.querySelectorAll('.ig-card').length;
                 document.getElementById('item-count').innerText = `${totalItems} Node(s) Discovered`;
 
             } catch (e) {
-                // 錯誤處理：可能是後端連線失敗或後端回傳 Instagram 錯誤
-                status.innerText = "OFFLINE";
+                status.innerText = "AUTH_FAIL";
                 status.className = "text-[9px] font-mono text-red-500 border border-red-500/30 px-3 py-1 bg-red-500/5";
             }
         }
@@ -333,7 +318,6 @@
             }, 6000);
         }
 
-        // --- 核心修改：移除 muted 屬性以播放聲音 ---
         function renderGrid(posts, append = false) {
             const grid = document.getElementById('gallery-grid');
             if (!append) grid.innerHTML = '';
@@ -352,6 +336,7 @@
                         <video 
                             src="${post.media_url}" 
                             poster="${thumb}" 
+                            muted 
                             loop 
                             playsinline 
                             preload="metadata"
@@ -359,7 +344,6 @@
                         ></video>
                     `;
                     
-                    // 手機端點擊邏輯：第一次點擊播放，再次點擊跳轉 (不需要靜音，因為是互動觸發)
                     let tapped = false;
                     card.onclick = (e) => {
                         const v = card.querySelector('video');
@@ -368,12 +352,10 @@
                             document.querySelectorAll('video').forEach(vid => vid.pause());
                             v.play().catch(() => {});
                             tapped = true;
-                            // 3秒後重置點擊狀態
                             setTimeout(() => { tapped = false; }, 3000);
                         }
                     };
 
-                    // 桌機端懸停邏輯 (可能被瀏覽器靜音，但代碼允許聲音)
                     card.onmouseenter = () => {
                         if (window.innerWidth >= 1024) {
                             const v = card.querySelector('video');
@@ -414,8 +396,10 @@
         }
 
         window.onload = () => {
-            // 不再讀取或使用本地 Token，直接嘗試從 Vercel 後端獲取數據
-            fetchIGPosts(null);
+            const token = getIGToken();
+            if (token) {
+                fetchIGPosts(token);
+            }
         };
     </script>
 </body>
