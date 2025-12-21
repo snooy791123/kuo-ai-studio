@@ -12,23 +12,17 @@
         .arctic-surface { background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0f1216 100%); }
         .hero-section { height: 90vh; height: 90dvh; }
         .carousel-slide { display: none; height: 100%; width: 100%; transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1); overflow: hidden; }
-        .carousel-slide.active { display: block; animation: kenBurns 20s infinite alternate; will-change: transform; transform: translateZ(0); }
+        .carousel-slide.active { display: block; animation: kenBurns 20s infinite alternate; transform: translateZ(0); }
         @keyframes kenBurns { from { transform: scale(1); } to { transform: scale(1.12); } }
-        .hi-res-img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.05) brightness(1.05); image-rendering: -webkit-optimize-contrast; }
-        .glass-text-pure { color: rgba(255, 255, 255, 0.45); -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.5); mix-blend-mode: plus-lighter; text-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); letter-spacing: -0.05em; }
-        .glass-text-outline-pure { color: transparent; -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.6); filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.25)); mix-blend-mode: screen; letter-spacing: 0.05em; }
+        .hi-res-img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.05) brightness(1.05); }
+        .glass-text-pure { color: rgba(255, 255, 255, 0.45); -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.5); mix-blend-mode: plus-lighter; text-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); }
+        .glass-text-outline-pure { color: transparent; -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.6); mix-blend-mode: screen; }
         .hero-title { font-size: clamp(3rem, 15vw, 11.5rem); line-height: 0.82; }
-        .meta-label { font-size: 9px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px; border: 1px solid rgba(255,255,255,0.15); background: rgba(0,0,0,0.3); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 30; }
+        .meta-label { font-size: 9px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px; border: 1px solid rgba(255,255,255,0.15); background: rgba(0,0,0,0.3); backdrop-filter: blur(8px); }
         .ig-card { transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1); border: 1px solid rgba(255,255,255,0.05); background: #161b22; position: relative; overflow: hidden; }
-        @media (hover: hover) { .ig-card:hover { border-color: rgba(255,255,255,0.4); transform: translateY(-10px); z-index: 10; } }
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: var(--bg-color); }
-        ::-webkit-scrollbar-thumb { background: #334155; }
+        @media (hover: hover) { .ig-card:hover { border-color: rgba(255,255,255,0.4); transform: translateY(-10px); } }
         .fade-in { animation: fadeIn 1s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .media-container { width: 100%; height: 100%; overflow: hidden; }
-        video { object-fit: cover; width: 100%; height: 100%; background: #000; }
-        .touch-target { min-height: 44px; min-width: 44px; }
     </style>
 </head>
 <body class="overflow-x-hidden arctic-surface">
@@ -37,81 +31,62 @@
         <div class="text-xl md:text-2xl font-black tracking-tighter italic text-white uppercase">Kuo Ai.</div>
         <div class="hidden md:flex gap-10 text-[10px] font-bold tracking-[0.3em] uppercase text-white">
             <a href="#collection" class="hover:opacity-50 transition-opacity">Archive</a>
-            <a href="#about" class="hover:opacity-50 transition-opacity">Information</a>
         </div>
     </nav>
 
     <header class="relative w-full hero-section bg-black overflow-hidden border-b border-white/10">
         <div id="carousel-wrapper" class="w-full h-full">
             <div class="carousel-slide active bg-slate-900 flex items-center justify-center italic text-slate-700">
-                <p class="tracking-[1em] uppercase text-[10px] md:text-xs text-center px-6">KUO AI STUDIO<br>Establishing 4K Node...</p>
+                <p class="tracking-[1em] uppercase text-[10px] text-center px-6">KUO AI STUDIO<br>Syncing Neural Data...</p>
             </div>
         </div>
         <div class="absolute inset-0 z-20 pointer-events-none flex flex-col justify-center px-6 md:px-10">
-            <div class="max-w-[1400px] mx-auto w-full relative">
-                <h2 class="text-blue-400 text-[10px] font-black tracking-[0.6em] md:tracking-[0.8em] uppercase mb-6 md:mb-10 opacity-80">/ Future Concept / 2025</h2>
+            <div class="max-w-[1400px] mx-auto w-full">
+                <h2 class="text-blue-400 text-[10px] font-black tracking-[0.8em] uppercase mb-10 opacity-80">/ Future Concept / 2025</h2>
                 <h1 class="hero-title font-black tracking-tighter uppercase">
                     <span class="glass-text-pure block">KUO AI</span>
                     <span class="glass-text-outline-pure block">STUDIO</span>
                 </h1>
-                <div class="mt-12 md:mt-20 flex flex-wrap gap-4">
-                    <div class="meta-label bg-white/10 text-white border-white/20">4K Creative Node</div>
-                    <div class="meta-label border-white/10 text-white/40 italic hidden sm:block">Visionary Intelligence</div>
-                </div>
             </div>
         </div>
         <div class="absolute bottom-0 w-full h-64 bg-gradient-to-t from-[#0f1216] via-[#0f1216]/60 to-transparent z-10"></div>
     </header>
 
-    <section id="about" class="max-w-[1400px] mx-auto px-6 md:px-10 py-16 md:py-24 grid grid-cols-1 md:grid-cols-3 gap-10 border-b border-white/5">
+    <section class="max-w-[1400px] mx-auto px-6 md:px-10 py-16 grid grid-cols-1 md:grid-cols-3 gap-10 border-b border-white/5">
         <div class="border-l border-white/20 pl-6">
             <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest">Creative Focus</span>
             <p class="text-lg font-bold mt-2 uppercase tracking-tighter italic">Visual Intelligence</p>
-            <p class="text-xs text-slate-400 mt-1 uppercase">Machine Learning / Aesthetics</p>
         </div>
         <div class="border-l border-white/20 pl-6">
             <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest">Studio Status</span>
             <p class="text-lg font-bold mt-2 uppercase tracking-tighter italic">Live Anthology</p>
-            <div class="flex items-center gap-4 mt-2">
-                <div class="flex gap-1">
-                    <div class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></div>
-                    <span class="text-[9px] font-mono text-slate-500 uppercase tracking-widest ml-2">Syncing Data</span>
-                </div>
-            </div>
         </div>
         <div class="flex items-center md:justify-end">
-            <div id="api-status" class="text-[9px] font-mono text-slate-500 border border-white/10 px-3 py-1 bg-white/5">CONNECTING...</div>
+            <div id="api-status" class="text-[9px] font-mono text-slate-500 border border-white/10 px-3 py-1 bg-white/5">ARCHIVE LOADING...</div>
         </div>
     </section>
 
     <main id="collection" class="max-w-[1400px] mx-auto px-6 md:px-10 py-20 md:py-32">
-        <div class="flex flex-col md:flex-row justify-between items-baseline md:items-end mb-12 md:mb-16 gap-4">
+        <div class="flex flex-col md:flex-row justify-between items-baseline mb-16 gap-4">
             <div>
                 <h3 class="text-4xl md:text-5xl font-black tracking-tighter italic uppercase">Master Catalog</h3>
-                <p id="item-count" class="text-[9px] text-slate-500 tracking-[0.3em] uppercase mt-2">Initializing...</p>
+                <p id="item-count" class="text-[9px] text-slate-500 tracking-[0.3em] uppercase mt-2">Connecting to Node...</p>
             </div>
-            <p class="text-xs text-slate-500 tracking-[0.2em] uppercase italic">Experience the Motion.</p>
         </div>
         <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             <div class="lg:col-span-2 lg:row-span-2 bg-slate-800/10 aspect-square animate-pulse flex items-center justify-center text-[10px] font-bold text-slate-800 tracking-[1em]">LOADING</div>
+            <div class="bg-slate-800/10 aspect-[3/4] animate-pulse"></div>
+            <div class="bg-slate-800/10 aspect-[3/4] animate-pulse"></div>
+            <div class="bg-slate-800/10 aspect-[3/4] animate-pulse"></div>
         </div>
-        <div class="mt-24 md:mt-32 text-center">
-            <button id="load-more-btn" class="hidden text-[10px] font-black tracking-[0.5em] uppercase border border-white/20 px-12 py-5 hover:bg-white hover:text-black transition-all touch-target">
-                Access More Data
-            </button>
+        <div class="mt-24 text-center">
+            <button id="load-more-btn" class="hidden text-[10px] font-black tracking-[0.5em] uppercase border border-white/20 px-12 py-5 hover:bg-white hover:text-black transition-all">Access More Data</button>
         </div>
     </main>
 
-    <footer class="py-20 md:py-32 px-6 md:px-10 text-center border-t border-white/5">
-        <h2 class="text-[15vw] md:text-[12vw] font-black text-white/5 leading-none select-none mb-10 italic uppercase">Kuo Ai.</h2>
-        <div class="flex justify-center gap-8 md:gap-10 text-[10px] font-bold text-slate-700 uppercase tracking-[0.5em] mb-10">
-            <a href="#" class="hover:text-white transition-colors">Instagram</a>
-            <a href="#" class="hover:text-white transition-colors">Behance</a>
-            <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
-        </div>
-        <p class="text-[10px] text-slate-800 tracking-[0.2em] uppercase max-w-xl mx-auto leading-relaxed italic px-4">
-            Visual Anthology by KUO AI STUDIO © 2025. Synchronized via Neural-API.
-        </p>
+    <footer class="py-20 text-center border-t border-white/5">
+        <h2 class="text-[12vw] font-black text-white/5 leading-none mb-10 italic uppercase">Kuo Ai.</h2>
+        <p class="text-[10px] text-slate-800 tracking-[0.2em] uppercase italic">Visual Anthology by KUO AI STUDIO © 2025.</p>
     </footer>
 
     <script>
@@ -119,18 +94,19 @@
         let carouselTimer = null;
         let nextPageUrl = null;
 
+        // --- 核心修正：自動呼叫 Vercel 後端 API ---
         async function fetchIGPosts(url = null) {
             const status = document.getElementById('api-status');
             const loadMoreBtn = document.getElementById('load-more-btn');
             
-            // 指向 Vercel 後端 API，不再傳入 token
+            // 重要：這裏改為相對路徑，Vercel 會自動指向 /api/ig.js
             const localApiUrl = url ? `/api/ig?url=${encodeURIComponent(url)}` : `/api/ig`;
 
             try {
                 const res = await fetch(localApiUrl);
                 const data = await res.json();
                 
-                if (!data.data) throw new Error("No data received");
+                if (!data || !data.data) throw new Error("API 沒有回傳正確資料");
 
                 if (!url) renderCarousel(data.data.slice(0, 5));
                 renderGrid(data.data, !!url);
@@ -145,13 +121,12 @@
 
                 status.innerText = "ACTIVE";
                 status.className = "text-[9px] font-mono text-green-500 border border-green-500/30 px-3 py-1 bg-green-500/5";
-                const totalItems = document.querySelectorAll('.ig-card').length;
-                document.getElementById('item-count').innerText = `${totalItems} Node(s) Discovered`;
+                document.getElementById('item-count').innerText = `${document.querySelectorAll('.ig-card').length} Node(s) Discovered`;
 
             } catch (e) {
-                status.innerText = "OFFLINE";
+                status.innerText = "OFFLINE / API ERROR";
                 status.className = "text-[9px] font-mono text-red-500 border border-red-500/30 px-3 py-1 bg-red-500/5";
-                console.error(e);
+                console.error("Debug Info:", e);
             }
         }
 
@@ -162,7 +137,7 @@
                 const url = post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url;
                 const slide = document.createElement('div');
                 slide.className = `carousel-slide ${i === 0 ? 'active' : ''}`;
-                slide.innerHTML = `<img src="${url}" class="hi-res-img" fetchpriority="high" loading="eager">`;
+                slide.innerHTML = `<img src="${url}" class="hi-res-img" loading="eager">`;
                 wrapper.appendChild(slide);
             });
             startCarousel();
@@ -211,6 +186,7 @@
             });
         }
 
+        // 頁面載入後自動開始抓取
         window.onload = () => { fetchIGPosts(); };
     </script>
 </body>
