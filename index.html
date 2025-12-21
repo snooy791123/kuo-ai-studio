@@ -333,6 +333,7 @@
             }, 6000);
         }
 
+        // --- 核心修改：移除 muted 屬性以播放聲音 ---
         function renderGrid(posts, append = false) {
             const grid = document.getElementById('gallery-grid');
             if (!append) grid.innerHTML = '';
@@ -351,7 +352,6 @@
                         <video 
                             src="${post.media_url}" 
                             poster="${thumb}" 
-                            muted 
                             loop 
                             playsinline 
                             preload="metadata"
@@ -359,7 +359,7 @@
                         ></video>
                     `;
                     
-                    // 手機端點擊邏輯：第一次點擊播放，再次點擊跳轉
+                    // 手機端點擊邏輯：第一次點擊播放，再次點擊跳轉 (不需要靜音，因為是互動觸發)
                     let tapped = false;
                     card.onclick = (e) => {
                         const v = card.querySelector('video');
@@ -373,7 +373,7 @@
                         }
                     };
 
-                    // 桌機端懸停邏輯
+                    // 桌機端懸停邏輯 (可能被瀏覽器靜音，但代碼允許聲音)
                     card.onmouseenter = () => {
                         if (window.innerWidth >= 1024) {
                             const v = card.querySelector('video');
