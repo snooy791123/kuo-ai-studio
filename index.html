@@ -100,8 +100,10 @@
             const loadMoreBtn = document.getElementById('load-more-btn');
             
             // 重要：這裏改為相對路徑，Vercel 會自動指向 /api/ig.js
-            const localApiUrl = url ? `/api/ig?url=${encodeURIComponent(url)}` : `/api/ig`;
-
+           const timestamp = new Date().getTime();
+const localApiUrl = url 
+    ? `/api/ig?url=${encodeURIComponent(url)}&t=${timestamp}` 
+    : `/api/ig?t=${timestamp}`;
             try {
                 const res = await fetch(localApiUrl);
                 const data = await res.json();
@@ -219,4 +221,5 @@
     </script>
 </body>
 </html>
+
 
